@@ -1,14 +1,36 @@
 package ch.ethz.globis.isk.parser.processor;
 
-import ch.ethz.globis.isk.domain.*;
-import ch.ethz.globis.isk.service.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import ch.ethz.globis.isk.domain.Book;
+import ch.ethz.globis.isk.domain.Conference;
+import ch.ethz.globis.isk.domain.DomainObject;
+import ch.ethz.globis.isk.domain.InCollection;
+import ch.ethz.globis.isk.domain.InProceedings;
+import ch.ethz.globis.isk.domain.Journal;
+import ch.ethz.globis.isk.domain.Person;
+import ch.ethz.globis.isk.domain.Proceedings;
+import ch.ethz.globis.isk.domain.Publication;
+import ch.ethz.globis.isk.domain.Publisher;
+import ch.ethz.globis.isk.domain.School;
+import ch.ethz.globis.isk.domain.Series;
+import ch.ethz.globis.isk.service.BaseService;
+import ch.ethz.globis.isk.service.ConferenceEditionService;
+import ch.ethz.globis.isk.service.ConferenceService;
+import ch.ethz.globis.isk.service.JournalEditionService;
+import ch.ethz.globis.isk.service.JournalService;
+import ch.ethz.globis.isk.service.PersonService;
+import ch.ethz.globis.isk.service.PublicationService;
+import ch.ethz.globis.isk.service.PublisherService;
+import ch.ethz.globis.isk.service.SchoolService;
+import ch.ethz.globis.isk.service.SeriesService;
+import ch.ethz.globis.isk.service.TransactionManager;
 
 /**
  * A cache of all the currently processed entities.

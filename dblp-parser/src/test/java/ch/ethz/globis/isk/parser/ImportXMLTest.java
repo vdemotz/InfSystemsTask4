@@ -1,8 +1,13 @@
 package ch.ethz.globis.isk.parser;
 
-import ch.ethz.globis.isk.domain.*;
-import ch.ethz.globis.isk.parser.config.ParserTestConfig;
-import ch.ethz.globis.isk.service.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +16,31 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
+import ch.ethz.globis.isk.domain.Article;
+import ch.ethz.globis.isk.domain.Book;
+import ch.ethz.globis.isk.domain.InCollection;
+import ch.ethz.globis.isk.domain.InProceedings;
+import ch.ethz.globis.isk.domain.Journal;
+import ch.ethz.globis.isk.domain.MasterThesis;
+import ch.ethz.globis.isk.domain.Person;
+import ch.ethz.globis.isk.domain.PhdThesis;
+import ch.ethz.globis.isk.domain.Proceedings;
+import ch.ethz.globis.isk.parser.config.ParserTestConfig;
+import ch.ethz.globis.isk.service.ArticleService;
+import ch.ethz.globis.isk.service.BookService;
+import ch.ethz.globis.isk.service.ConferenceEditionService;
+import ch.ethz.globis.isk.service.ConferenceService;
+import ch.ethz.globis.isk.service.InCollectionService;
+import ch.ethz.globis.isk.service.InProceedingsService;
+import ch.ethz.globis.isk.service.JournalEditionService;
+import ch.ethz.globis.isk.service.JournalService;
+import ch.ethz.globis.isk.service.MasterThesisService;
+import ch.ethz.globis.isk.service.PersonService;
+import ch.ethz.globis.isk.service.PhdThesisService;
+import ch.ethz.globis.isk.service.ProceedingsService;
+import ch.ethz.globis.isk.service.PublicationService;
+import ch.ethz.globis.isk.service.PublisherService;
+import ch.ethz.globis.isk.service.SeriesService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( classes = {ParserTestConfig.class})

@@ -1,13 +1,19 @@
 package ch.ethz.globis.isk.parser.processor;
 
 
-import ch.ethz.globis.isk.domain.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import ch.ethz.globis.isk.domain.Conference;
+import ch.ethz.globis.isk.domain.ConferenceEdition;
+import ch.ethz.globis.isk.domain.Person;
+import ch.ethz.globis.isk.domain.Proceedings;
+import ch.ethz.globis.isk.domain.Publisher;
+import ch.ethz.globis.isk.domain.Series;
 import ch.ethz.globis.isk.parser.DBLPTag;
 import ch.ethz.globis.isk.service.BaseService;
 import ch.ethz.globis.isk.service.ConferenceEditionService;
 import ch.ethz.globis.isk.service.ConferenceService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Component
 public class ProceedingsXMLProcessor extends EntityXMLProcessor<Proceedings> {

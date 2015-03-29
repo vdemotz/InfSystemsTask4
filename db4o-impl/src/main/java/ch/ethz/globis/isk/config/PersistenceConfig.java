@@ -1,14 +1,37 @@
 package ch.ethz.globis.isk.config;
 
-import ch.ethz.globis.isk.domain.db4o.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+
+import ch.ethz.globis.isk.domain.db4o.DomainArticle;
+import ch.ethz.globis.isk.domain.db4o.DomainBook;
+import ch.ethz.globis.isk.domain.db4o.DomainConference;
+import ch.ethz.globis.isk.domain.db4o.DomainConferenceEdition;
+import ch.ethz.globis.isk.domain.db4o.DomainInCollection;
+import ch.ethz.globis.isk.domain.db4o.DomainInProceedings;
+import ch.ethz.globis.isk.domain.db4o.DomainJournal;
+import ch.ethz.globis.isk.domain.db4o.DomainJournalEdition;
+import ch.ethz.globis.isk.domain.db4o.DomainMasterThesis;
+import ch.ethz.globis.isk.domain.db4o.DomainPerson;
+import ch.ethz.globis.isk.domain.db4o.DomainPhdThesis;
+import ch.ethz.globis.isk.domain.db4o.DomainProceedings;
+import ch.ethz.globis.isk.domain.db4o.DomainPublication;
+import ch.ethz.globis.isk.domain.db4o.DomainPublisher;
+import ch.ethz.globis.isk.domain.db4o.DomainSchool;
+import ch.ethz.globis.isk.domain.db4o.DomainSeries;
+
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
 import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.constraints.UniqueFieldValueConstraint;
 import com.db4o.io.CachingStorage;
 import com.db4o.io.FileStorage;
 import com.db4o.io.Storage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.*;
-import org.springframework.core.env.Environment;
 
 /**
  * The main configuration class for Spring.
@@ -113,11 +136,24 @@ public class PersistenceConfig {
      * @param configuration                 The EmbeddedConfiguration object.
      */
     private static void addUniqueConstrains(EmbeddedConfiguration configuration) {
-        Class[] classes = new Class[] { Db4oArticle.class, Db4oBook.class, Db4oConference.class, Db4oConferenceEdition.class, Db4oInCollection.class, Db4oInProceedings.class, Db4oJournal.class, Db4oJournalEdition.class, Db4oMasterThesis.class, Db4oPerson.class, Db4oPhdThesis.class, Db4oProceedings.class, Db4oPublication.class, Db4oPublisher.class, Db4oSchool.class, Db4oSeries.class };
+        Class[] classes = new Class[] { DomainArticle.class, DomainBook.class, DomainConference.class, DomainConferenceEdition.class, DomainInCollection.class, DomainInProceedings.class, DomainJournal.class, DomainJournalEdition.class, DomainMasterThesis.class, DomainPerson.class, DomainPhdThesis.class, DomainProceedings.class, DomainPublication.class, DomainPublisher.class, DomainSchool.class, DomainSeries.class };
         String ID_FIELD = "id";
         for (Class clazz : classes) {
             configuration.common().objectClass(clazz).objectField(ID_FIELD).indexed(true);
             configuration.common().add(new UniqueFieldValueConstraint(clazz, ID_FIELD));
         }
+    }
+    
+    /**
+     * Qualifier for the ObjectContainer object.
+     */
+    public static final String OC_QUALIFIER = "objectContainer";
+    
+    /**
+     * A reference to the ObjectContainer.
+     */
+    @Bean(name = OC_QUALIFIER)
+    public ObjectContainer objectContainer(String databaseName){
+    	return Db4oEmbedded.openFile(databaseName);
     }
 }

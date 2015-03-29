@@ -1,9 +1,10 @@
 package ch.ethz.globis.isk.transaction;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import javax.persistence.EntityManager;
 
 @Component
 public class JpaTransactionManager extends CacheAwareTransactionManager {
@@ -19,7 +20,9 @@ public class JpaTransactionManager extends CacheAwareTransactionManager {
 
     @Override
     public void rollback() {
-        em.getTransaction().rollback();
+        if (em.getTransaction().isActive()) {
+            em.getTransaction().rollback();
+        }
     }
 
     @Override

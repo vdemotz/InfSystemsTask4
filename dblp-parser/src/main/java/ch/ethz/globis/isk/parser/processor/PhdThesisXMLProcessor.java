@@ -1,10 +1,14 @@
 package ch.ethz.globis.isk.parser.processor;
 
-import ch.ethz.globis.isk.domain.*;
-import ch.ethz.globis.isk.parser.DBLPTag;
-import ch.ethz.globis.isk.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import ch.ethz.globis.isk.domain.Person;
+import ch.ethz.globis.isk.domain.PhdThesis;
+import ch.ethz.globis.isk.domain.Publisher;
+import ch.ethz.globis.isk.domain.School;
+import ch.ethz.globis.isk.parser.DBLPTag;
+import ch.ethz.globis.isk.service.BaseService;
 
 @Component
 public class PhdThesisXMLProcessor extends EntityXMLProcessor<PhdThesis> {

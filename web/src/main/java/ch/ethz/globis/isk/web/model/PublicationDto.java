@@ -1,10 +1,25 @@
 package ch.ethz.globis.isk.web.model;
 
-import ch.ethz.globis.isk.domain.*;
-import ch.ethz.globis.isk.web.utils.EncodingUtils;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import ch.ethz.globis.isk.domain.Article;
+import ch.ethz.globis.isk.domain.Book;
+import ch.ethz.globis.isk.domain.ConferenceEdition;
+import ch.ethz.globis.isk.domain.InCollection;
+import ch.ethz.globis.isk.domain.InProceedings;
+import ch.ethz.globis.isk.domain.Journal;
+import ch.ethz.globis.isk.domain.JournalEdition;
+import ch.ethz.globis.isk.domain.MasterThesis;
+import ch.ethz.globis.isk.domain.Person;
+import ch.ethz.globis.isk.domain.PhdThesis;
+import ch.ethz.globis.isk.domain.Proceedings;
+import ch.ethz.globis.isk.domain.Publication;
+import ch.ethz.globis.isk.domain.Publisher;
+import ch.ethz.globis.isk.domain.School;
+import ch.ethz.globis.isk.domain.Series;
+import ch.ethz.globis.isk.web.utils.EncodingUtils;
 
 public class PublicationDto<T extends Publication> extends DTO<T> {
 

@@ -1,21 +1,38 @@
 package ch.ethz.globis.isk.web.controller;
 
-import ch.ethz.globis.isk.domain.*;
-import ch.ethz.globis.isk.service.*;
-import ch.ethz.globis.isk.util.Order;
-import ch.ethz.globis.isk.util.OrderFilter;
-import ch.ethz.globis.isk.web.model.*;
-import ch.ethz.globis.isk.web.utils.EncodingUtils;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import ch.ethz.globis.isk.domain.Conference;
+import ch.ethz.globis.isk.domain.ConferenceEdition;
+import ch.ethz.globis.isk.domain.InProceedings;
+import ch.ethz.globis.isk.service.BaseService;
+import ch.ethz.globis.isk.service.ConferenceEditionService;
+import ch.ethz.globis.isk.service.ConferenceService;
+import ch.ethz.globis.isk.service.InProceedingsService;
+import ch.ethz.globis.isk.util.Order;
+import ch.ethz.globis.isk.util.OrderFilter;
+import ch.ethz.globis.isk.web.model.ConferenceDto;
+import ch.ethz.globis.isk.web.model.ConferenceEditionDto;
+import ch.ethz.globis.isk.web.model.DTO;
+import ch.ethz.globis.isk.web.model.DTOs;
+import ch.ethz.globis.isk.web.model.PageResponseDto;
+import ch.ethz.globis.isk.web.model.PublicationDto;
+import ch.ethz.globis.isk.web.model.SimpleConferenceDto;
+import ch.ethz.globis.isk.web.utils.EncodingUtils;
 
 @Controller
 @RequestMapping("/conferences")
