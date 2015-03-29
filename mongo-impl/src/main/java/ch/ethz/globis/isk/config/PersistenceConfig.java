@@ -1,17 +1,9 @@
 package ch.ethz.globis.isk.config;
 
-import java.net.UnknownHostException;
-
 import ch.ethz.globis.isk.domain.mongo.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
-
-import com.mongodb.MongoClient;
 
 /**
  * The main configuration class for Spring.
@@ -97,10 +89,5 @@ public class PersistenceConfig {
     @Profile({ "production", "import", "web" })
     String productionDatabaseName() {
         return "dblp";
-    }
-    
-    @Bean(name = "MongoOperations")
-    MongoOperations mongoOperations(String databaseName) throws UnknownHostException  {
-    	return new MongoTemplate(new SimpleMongoDbFactory(new MongoClient(), databaseName));
     }
 }

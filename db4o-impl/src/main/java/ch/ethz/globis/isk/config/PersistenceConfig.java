@@ -1,15 +1,11 @@
 package ch.ethz.globis.isk.config;
 
 import ch.ethz.globis.isk.domain.db4o.*;
-
-import com.db4o.Db4oEmbedded;
-import com.db4o.ObjectContainer;
 import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.constraints.UniqueFieldValueConstraint;
 import com.db4o.io.CachingStorage;
 import com.db4o.io.FileStorage;
 import com.db4o.io.Storage;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -123,19 +119,5 @@ public class PersistenceConfig {
             configuration.common().objectClass(clazz).objectField(ID_FIELD).indexed(true);
             configuration.common().add(new UniqueFieldValueConstraint(clazz, ID_FIELD));
         }
-    }
-    
-    /**
-     * Qualifier for the ObjectContainer object.
-     */
-    public static final String OC_QUALIFIER = "objectContainerDb4o";
-    
-    /**
-     * A reference to the ObjectContainer.
-     */
-    
-    @Bean
-    public ObjectContainer objectContainer(String databaseName){
-    	return Db4oEmbedded.openFile(databaseName);
     }
 }

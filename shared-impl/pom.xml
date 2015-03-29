@@ -22,11 +22,12 @@
         <commons.lang.version>3.3.1</commons.lang.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>source.db4o</id>
-            <url>http://source.db4o.com/maven/</url>
-        </repository>
+	<repositories>
+		<repository>
+			<id>globis-releases</id>
+			<name>Archiva Managed GlobIS Repository</name>
+			<url>http://maven.globis.ethz.ch/archiva/repository/globis-releases/</url>
+		</repository>
     </repositories>
 
     <dependencies>

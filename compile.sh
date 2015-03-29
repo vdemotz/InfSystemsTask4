@@ -1,4 +1,4 @@
-#rm -rf $HOME/.m2/repository/ch/ethz
+rm -rf $HOME/.m2/repository/ch/ethz
 
 DEFAULT_BACKEND=db4o
 BACKEND=$1
